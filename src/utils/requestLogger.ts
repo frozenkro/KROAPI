@@ -5,11 +5,13 @@ import mongoose, { Schema, Model } from 'mongoose';
 function requestLogger(req: Request, res: Response, next: NextFunction) {
     const start: number = Date.now();
 
+    console.log('defining responseInterceptor')
     // Define a response interceptor to log the response data
     const responseInterceptor = {
-      get: function(target: any, property: any, receiver: any) {
+      get: async function(target: any, property: any, receiver: any) {
+        console.log('called the get');
         if (property === 'send') {
-          return async function(data: any) {
+          return function(data: any) {
             const duration: number = Date.now() - start;
 
             const logRequestData: ILogRequest = {
@@ -24,8 +26,9 @@ function requestLogger(req: Request, res: Response, next: NextFunction) {
                 duration
             };
 
+            console.log('help');
             const logRequest = new LogRequest(logRequestData);
-            await logRequest.save();
+            logRequest.save();
 
             target.send(data);
           }

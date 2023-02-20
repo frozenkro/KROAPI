@@ -14,7 +14,7 @@ if (!fs.existsSync('./logs')){
     fs.mkdirSync('./logs');
 }
 const reqLogStream = fs.createWriteStream(path.join(__dirname, '../logs', 'requestLogs.log'), { flags: 'a+' });
-const requestLogger = morgan('dev', { stream: reqLogStream });
+const requestLogger = morgan('combined', { stream: reqLogStream });
 app.use(requestLogger);
 
 app.use('/api/chat', chatRouter);

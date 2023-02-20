@@ -10,6 +10,8 @@ const app = express();
 dotenv.config({ path: __dirname+'/../.env'});
 connectDB();
 
+app.use(express.json());
+
 if (!fs.existsSync('./logs')){
     fs.mkdirSync('./logs');
 }

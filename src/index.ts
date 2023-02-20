@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import chatRouter from './routes/chat';
 import dotenv from 'dotenv';
 import connectDB from './utils/db';
@@ -20,6 +20,9 @@ const requestLogger = morgan('combined', { stream: reqLogStream });
 app.use(requestLogger);
 
 app.use('/api/chat', chatRouter);
+app.get('/', (req: Request, res: Response) => {
+    res.send('success');
+});
 
 const port = 3000;
 app.listen(port, () => {console.log(`Listening on ${port}`);})

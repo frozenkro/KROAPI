@@ -4,7 +4,7 @@ import { CreateCompletionResponse } from 'openai/dist/api';
 
 const router = express.Router();
 
-router.get('/npmTest', async (req: Request, res: Response) => {
+router.get('/', async (req: Request, res: Response) => {
     try {
         const configuration = new Configuration({
         apiKey: process.env.OPENAI_API_KEY,

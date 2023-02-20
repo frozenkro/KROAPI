@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --watch . --exec ts-node src/index.ts",
-    "prod": "npx tsc && node ./src/index.js"
+    "prod": "npx tsc && node ./src/index.js",
+    "pm2": "npx tsc && pm2 start ./src/index.js --name kroapi"
   },
   "author": "",
   "license": "ISC",
